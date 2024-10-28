@@ -12,16 +12,49 @@ import java.util.List;
  */
 public class MachineServiceImpl implements MachineService<Machine> {
 
+    private final MachineProducer truckProducer = new MachineProducer() {
+        @Override
+        public List<Machine> get() {
+            Truck truck1 = new Truck();
+            Truck truck2 = new Truck();
+            Truck truck3 = new Truck();
+            List<Machine> trucks = List.of(truck1, truck2, truck3);
+            return trucks;
+        }
+    };
+
+    private final MachineProducer excavatorProducer = new MachineProducer() {
+        @Override
+        public List<Machine> get() {
+            Excavator excavator1 = new Excavator();
+            Excavator excavator2 = new Excavator();
+            Excavator excavator3 = new Excavator();
+            List<Machine> excavators = List.of(excavator1, excavator2, excavator3);
+            return excavators;
+        }
+    };
+
+    private final MachineProducer bulldozerProducer = new MachineProducer() {
+        @Override
+        public List<Machine> get() {
+            Bulldozer bulldozer1 = new Bulldozer();
+            Bulldozer bulldozer2 = new Bulldozer();
+            Bulldozer bulldozer3 = new Bulldozer();
+            List<Machine> bulldozers = List.of(bulldozer1, bulldozer2, bulldozer3);
+            return bulldozers;
+        }
+    };
+
     @Override
-    public List<Machine> getAll(Class type) {
+    public List<Machine> getAll(Class<? extends Machine> type) {
 
         switch (type.getSimpleName()) {
             case "Truck":
-                return new Truck().get();
+                return truckProducer.get();
             case "Bulldozer":
-                return new Bulldozer().get();
+                return bulldozerProducer.get();
             case "Excavator":
-                return new Excavator().get();
+                return excavatorProducer.get();
             default:
                 return new ArrayList<>();
         }

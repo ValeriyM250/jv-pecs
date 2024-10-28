@@ -17,7 +17,7 @@ public interface MachineService<T> {
      * @param type - any class of Machine sub class. For example: Truck.class or Bulldozer.class
      * @return the list of machines
      */
-    List<core.mate.academy.model.Machine> getAll(Class type);
+    List<Machine> getAll(Class<? extends Machine> type);
 
     /**
      * Fill the machines list with passed value
