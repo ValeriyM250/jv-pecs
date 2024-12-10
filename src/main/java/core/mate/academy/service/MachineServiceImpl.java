@@ -66,6 +66,7 @@ public class MachineServiceImpl implements MachineService<Machine> {
             machines.set(i, value);
         }
     }
+
     @Override
     public void startWorking(List<? extends Machine> machines) {
         for (int i = 0; i < machines.size(); i++) {
